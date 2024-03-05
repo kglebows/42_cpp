@@ -13,6 +13,7 @@
 	#include "PhoneBook.hpp"
 	#include <iostream>
 	#include <iomanip>
+	#include <cstdlib>
 
 	/*Constructor Destructor*/
 	PhoneBook::PhoneBook()
@@ -163,7 +164,7 @@
 		std::getline(std::cin, inputLine);
 		int selection = 0;
 		if (!inputLine.empty() && PhoneBook::isPhoneNumber(inputLine))
-			selection = std::stoi(inputLine);
+			selection = atoi(inputLine.c_str());
 		if (selection > 0 && selection < last + 1)
 		{
 			std::cout	<< "First Name	: " << contactList[selection - 1].getFirstName() << std::endl;

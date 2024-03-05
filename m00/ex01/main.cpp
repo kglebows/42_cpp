@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:58:03 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/04 13:45:41 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/05 09:40:52 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ int	main(int argc, char **argv)
 
 	if (argc != 1)
 		std::cout << "This Awesome PhoneBook takes no arguments!" << std::endl;
+	else
+	{
+		std::cout << "*****************************************" << std::endl;
+		std::cout << "*                                       *" << std::endl;
+		std::cout << "*    WELCOME TO MY AMAZING PHONEBOOK!   *" << std::endl;
+		std::cout << "*                                       *" << std::endl;
+		std::cout << "*****************************************" << std::endl;
+	}
 	while (!argv[1])
 	{
 		std::cout << "Enter one of the commands - ADD,SEARCH or EXIT: ";

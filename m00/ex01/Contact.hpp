@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:09:29 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/04 20:10:21 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/05 09:45:51 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 class Contact
 {
 private:
-	// int				index;
 	std::string		firstName;
 	std::string		lastName;
 	std::string		nickname;
