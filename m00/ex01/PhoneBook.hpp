@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:11 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/04 20:12:56 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:13:11 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
+# include <iomanip>
+# include <cstdlib>
 
-class PhoneBook
-{
+class PhoneBook {
 private:
 	Contact			contactList[8];
 	int				nrOfContacts;

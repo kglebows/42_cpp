@@ -11,23 +11,17 @@
 	/* ************************************************************************** */
 
 	#include "PhoneBook.hpp"
-	#include <iostream>
-	#include <iomanip>
-	#include <cstdlib>
 
 	/*Constructor Destructor*/
-	PhoneBook::PhoneBook()
-	{
+	PhoneBook::PhoneBook() {
 		// std::cout << "Constuctor - PhoneBook" << std::endl;
 	}
-	PhoneBook::~PhoneBook()
-	{
+	PhoneBook::~PhoneBook() {
 		// std::cout << "Destructor - PhoneBook" << std::endl;
 	}
 
 	/*Utils*/
-	int		PhoneBook::findLastIndex()
-	{
+	int	PhoneBook::findLastIndex() {
 		int			i;
 
 		i = 0;
@@ -35,8 +29,7 @@
 			i++;
 		return (i);
 	}
-	bool	PhoneBook::isPhoneNumber(std::string& str)
-	{
+	bool	PhoneBook::isPhoneNumber(std::string& str) {
 		int			i;
 
 		if (str[0] == '+')
@@ -50,8 +43,7 @@
 		else
 			return (true);
 	}
-	bool	PhoneBook::isAlpha(std::string& str)
-	{
+	bool	PhoneBook::isAlpha(std::string& str) {
 		int			i;
 
 		i = 0;
@@ -64,8 +56,7 @@
 		else
 			return (true);
 	}
-	std::string	PhoneBook::print10(std::string& str)
-	{
+	std::string	PhoneBook::print10(std::string& str) {
 		if (str.length() > 10)
 			return(str.substr(0,9) + ".");
 		else
@@ -73,56 +64,46 @@
 	}
 
 	/*input*/
-	std::string			PhoneBook::inputFirstName()
-	{
+	std::string	PhoneBook::inputFirstName() {
 		std::string		inputLine;
 
-		while(inputLine.empty() || !PhoneBook::isAlpha(inputLine))
-		{
+		while(inputLine.empty() || !PhoneBook::isAlpha(inputLine)) {
 			std::cout << "First Name	: ";
 			std::getline(std::cin, inputLine);
 		}
 		return (inputLine);
 	}
-	std::string			PhoneBook::inputLastName()
-	{
+	std::string	PhoneBook::inputLastName() {
 		std::string		inputLine;
 
-		while(inputLine.empty() || !PhoneBook::isAlpha(inputLine))
-		{
+		while(inputLine.empty() || !PhoneBook::isAlpha(inputLine)) {
 			std::cout << "Last Name	: ";
 			std::getline(std::cin, inputLine);
 		}
 		return (inputLine);
 	}
-	std::string			PhoneBook::inputNickname()
-	{
+	std::string	PhoneBook::inputNickname() {
 		std::string		inputLine;
 
-		while(inputLine.empty())
-		{
+		while(inputLine.empty()) {
 			std::cout << "Nickname	: ";
 			std::getline(std::cin, inputLine);
 		}
 		return (inputLine);
 	}
-	std::string			PhoneBook::inputPhoneNumber()
-	{
+	std::string	PhoneBook::inputPhoneNumber() {
 		std::string		inputLine;
 
-		while(inputLine.empty() || !PhoneBook::isPhoneNumber(inputLine))
-		{
+		while(inputLine.empty() || !PhoneBook::isPhoneNumber(inputLine)) {
 			std::cout << "Phone Number	: ";
 			std::getline(std::cin, inputLine);
 		}
 		return (inputLine);
 	}
-	std::string			PhoneBook::inputDarkestSecret()
-	{
+	std::string	PhoneBook::inputDarkestSecret() {
 		std::string		inputLine;
 
-		while(inputLine.empty())
-		{
+		while(inputLine.empty()) {
 			std::cout << "Darkest Secret	: ";
 			std::getline(std::cin, inputLine);
 		}
@@ -130,8 +111,7 @@
 	}
 
 	/*Options*/
-	void	PhoneBook::addOption()
-	{
+	void	PhoneBook::addOption() {
 		int index = PhoneBook::findLastIndex();
 		if (index > 7)
 			index = nrOfContacts % 8;
@@ -143,8 +123,7 @@
 		contactList[index].setDarkestSecret(inputDarkestSecret());
 		nrOfContacts++;
 	}
-	void	PhoneBook::searchOption()
-	{
+	void	PhoneBook::searchOption() {
 		std::cout	<< std::setw(10) << "INDEX" << "|"
 					<< std::setw(10) << "FIRST NAME" << "|"
 					<< std::setw(10) << "LAST NAME" << "|"
@@ -152,8 +131,7 @@
 		int last = PhoneBook::findLastIndex();
 		if (last > 7)
 			last = 8;
-		for (int i = 0; i < last; i++)
-		{
+		for (int i = 0; i < last; i++) {
 			std::cout	<< std::setw(10) << i + 1 << "|"
 						<< std::setw(10) << PhoneBook::print10(contactList[i].getFirstName()) << "|"
 						<< std::setw(10) << PhoneBook::print10(contactList[i].getLastName()) << "|"
@@ -165,14 +143,12 @@
 		int selection = 0;
 		if (!inputLine.empty() && PhoneBook::isPhoneNumber(inputLine))
 			selection = atoi(inputLine.c_str());
-		if (selection > 0 && selection < last + 1)
-		{
+		if (selection > 0 && selection < last + 1) {
 			std::cout	<< "First Name	: " << contactList[selection - 1].getFirstName() << std::endl;
 			std::cout	<< "Last Name	: " << contactList[selection - 1].getLastName() << std::endl;
 			std::cout	<< "Nickname	: " << contactList[selection - 1].getNickname() << std::endl;
 			std::cout	<< "Phone Number	: " << contactList[selection - 1].getPhoneNumber() << std::endl;
 			std::cout	<< "Darkest Secret	: " << contactList[selection - 1].getDarkestSecret() << std::endl;
-		}
-		else
+		} else
 			std::cout << "Wrong index..." << std::endl;
 	}

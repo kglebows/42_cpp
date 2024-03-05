@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:09:29 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/05 09:45:51 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:50:41 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define CONTACT_HPP
 
 # include <string>
+# include <iostream>
 
-class Contact
-{
+class Contact {
 private:
 	std::string		firstName;
 	std::string		lastName;
@@ -37,7 +37,5 @@ public:
 	void			setPhoneNumber(std::string s);
 	void			setDarkestSecret(std::string s);
 };
-
-
 
 #endif
