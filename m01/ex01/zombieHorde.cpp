@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 12:58:03 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/06 19:14:47 by kglebows         ###   ########.fr       */
+/*   Created: 2024/03/06 18:27:01 by kglebows          #+#    #+#             */
+/*   Updated: 2024/03/07 11:12:28 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include <iostream>
 
-int	main() {
-	Zombie *ptr[4];
-	
-	ptr[0] = newZombie("Harold");
-	randomChump("Samantha");
-	ptr[1] = newZombie("Hazel");
-	randomChump("Sebastian");
-	ptr[2] = newZombie("Hector");
-	randomChump("Stella");
-	randomChump("Simon");
-	ptr[3] = newZombie("Henrietta");
-	delete ptr[0];
-	delete ptr[1];
-	delete ptr[2];
-	delete ptr[3];
-	return (0);
+Zombie* zombieHorde( int N, std::string name ){
+	if (N < 1)
+		return (NULL);
+	Zombie *ptr = new Zombie[N];
+	for (int i = 0; i < N; i++) {
+		ptr[i].setName(name + "_" + std::to_string(i + 1));
+	}
+	return (ptr);
 }

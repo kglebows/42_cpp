@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:58:03 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/06 19:14:47 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:13:40 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 #include <iostream>
 
 int	main() {
-	Zombie *ptr[4];
-	
-	ptr[0] = newZombie("Harold");
-	randomChump("Samantha");
-	ptr[1] = newZombie("Hazel");
-	randomChump("Sebastian");
-	ptr[2] = newZombie("Hector");
-	randomChump("Stella");
-	randomChump("Simon");
-	ptr[3] = newZombie("Henrietta");
-	delete ptr[0];
-	delete ptr[1];
-	delete ptr[2];
-	delete ptr[3];
+	int				N = 10;
+	std::string		name = "Zombie";
+	if (N < 1){
+		std::cout << "Horde number has to be bigger then 0 ;>" << std::endl;
+		return (1);
+	}
+	Zombie* Horde = zombieHorde(N,name);
+	for (int i = 0; i < N; i++) {
+		Horde[i].announce();
+	}
+	delete[] Horde;
 	return (0);
 }
