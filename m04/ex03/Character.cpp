@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 10:28:17 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/20 12:26:02 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:02:38 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ void Character::equip(AMateria* m){
 	std::clog << "Materia Inventory of " << getName() << " is full! No new Materia can be added :<" << std::endl;
 }
 void Character::unequip(int idx){
+	if (idx < 0 || idx > 3){
+		std::clog << "Materia Inventory slot " << idx << " of " << getName() << " does not exist!" << std::endl;
+		return ;
+	}
 	if (!inventory[idx]){
 		std::clog << "Materia Inventory slot " << idx << " of " << getName() << " is empty! No Materia can be dropped :<" << std::endl;
 		return ;
@@ -75,6 +79,10 @@ void Character::unequip(int idx){
 	inventory[idx] = NULL;
 }
 void Character::use(int idx, ICharacter& target){
+	if (idx < 0 || idx > 3){	
+		std::clog << "Materia Inventory slot " << idx << " of " << getName() << " does not exist!" << std::endl;
+		return ;
+	}
 	if (!inventory[idx]){
 		std::clog << "Materia Inventory slot " << idx << " of " << getName() << " is empty! No Materia can be used :<" << std::endl;
 		return ;
