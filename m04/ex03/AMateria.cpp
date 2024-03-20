@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:28:48 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/20 12:49:35 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:58:07 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ AMateria::AMateria(AMateria const& copy){
 AMateria& AMateria::operator=(AMateria const& copy){
 	std::clog << "AMateria:: Copy Assignment Operator" << std::endl;
 	if (this != &copy){
-		return (*this);
+		this->type = copy.type;
 	}
 	return (*this);
 }
