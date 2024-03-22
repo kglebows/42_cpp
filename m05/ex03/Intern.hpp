@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 10:11:20 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/22 14:44:05 by kglebows         ###   ########.fr       */
+/*   Created: 2024/03/22 14:17:45 by kglebows          #+#    #+#             */
+/*   Updated: 2024/03/22 15:25:12 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
-# include "AForm.hpp"
+# include "PresidentialPardonForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "ShrubberyCreationForm.hpp"
 
-class PresidentialPardonForm : public AForm
+class Intern
 {
-private:
-	const std::string		target;
 public:
-	PresidentialPardonForm(std::string const& target);
-	PresidentialPardonForm(PresidentialPardonForm const& copy);
-	~PresidentialPardonForm();
+	Intern();
+	~Intern();
+	Intern(Intern const& copy);
+	Intern& operator=(Intern const& copy);
 
-	void execute(Bureaucrat const& executor) const;
-	const std::string getTarget() const;
+	AForm	*makeForm(std::string form, std::string target);
 };
 
 #endif
