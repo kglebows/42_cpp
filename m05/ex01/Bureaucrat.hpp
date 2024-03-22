@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:53:45 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/20 18:04:58 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:54:02 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ public:
 	Bureaucrat(std::string const& name, int grade);
 	~Bureaucrat();
 	Bureaucrat(Bureaucrat const& copy);
+	Bureaucrat& operator=(Bureaucrat const& copy);
 
 	std::string const& getName() const;
 	int getGrade() const;

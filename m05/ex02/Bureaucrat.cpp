@@ -6,7 +6,7 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:19:15 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/22 13:13:11 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:46:19 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	Bureaucrat::decrementGrade(){
 		throw GradeTooLowException();
 	grade++;
 }
-void	Bureaucrat::signForm(Form & paper){
+void	Bureaucrat::signForm(AForm & paper){
 	try {
 		paper.beSigned(*this);
 		std::cout << this->getName() << " signed " << paper.getName() << std::endl;
@@ -72,7 +72,16 @@ void	Bureaucrat::signForm(Form & paper){
 		std::cout << this->getName() << " couldn't sign " << paper.getName() << " because " << e.what() << std::endl;
 	}
 }
+void	Bureaucrat::executeForm(AForm const& form){
+	try{
+		form.beExecuted(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}catch(const std::exception& e){
+		std::cout << this->getName() << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
 
+/*ostream*/
 std::ostream &operator<<(std::ostream& out, const Bureaucrat& b) {
 	out << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
 	return out;
