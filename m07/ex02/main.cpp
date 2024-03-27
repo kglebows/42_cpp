@@ -39,28 +39,38 @@ std::string rollString(int lenght){
 int main(){
 	srand(time(0));
 	
-	Array<int> emptyInt();
-	Array<std::string> emptyString();
-	
-	Array<int> randomDice(6);
-	Array<std::string> randomString(4);
+	std::cout << std::endl << "Empty Int:" << std::endl;
+	Array<int> emptyInt;
+	std::cout << "Array size" << ":" << emptyInt.size() << ":" << std::endl;
 
+	std::cout << std::endl << "Empty String:" << std::endl;
+	Array<std::string> emptyString;
+	std::cout << "Array size" << ":" << emptyString.size() << ":" << std::endl;
+	
+	std::cout << std::endl << "Rolls:" << std::endl;
+	Array<int> randomDice(6);
 	for (unsigned int i = 0; i < randomDice.size(); i++)
 		randomDice[i] = i * 100 + rollDice(99);
-	
-	for (unsigned int i = 0; i < randomString.size(); i++)
-		randomString[i] = rollString(rollDice(20));
-
-	std::cout << std::endl << "Rolls:" << std::endl;
 	for (unsigned int i = 0; i < randomDice.size(); i++)
 		std::cout << i + 1 << ":" << randomDice[i] << ":" << std::endl;
 
 	std::cout << std::endl << "Strings:" << std::endl;
+	Array<std::string> randomString(4);
+	for (unsigned int i = 0; i < randomString.size(); i++)
+		randomString[i] = rollString(rollDice(20));
 	for (unsigned int i = 0; i < randomString.size(); i++)
 		std::cout << i + 1 << ":" << randomString[i] << ":" << std::endl;
 
-	std::cout << std::endl << "EmptyInt:" << std::endl;
-	std::cout << "0:" << emptyInt[i] << ":" << std::endl;
+	std::cout << std::endl << "Copy Assignment to Empty String:" << std::endl;
+	emptyString = randomString;
+	for (unsigned int i = 0; i < emptyString.size(); i++)
+		std::cout << i + 1 << ":" << emptyString[i] << ":" << std::endl;	
 
+	std::cout << std::endl << "Copy Strings:" << std::endl;
+	Array<std::string> copyString = randomString;
+	for (unsigned int i = 0; i < copyString.size(); i++)
+		std::cout << i + 1 << ":" << copyString[i] << ":" << std::endl;	
+
+	std::cout << std::endl;
 	return (0);
 }

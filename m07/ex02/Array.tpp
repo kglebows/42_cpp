@@ -4,58 +4,61 @@
 /*cannonicalForm*/
 template <typename T>
 Array<T>::Array():
-    array(NULL),
-    size(0)
-{}
+    _array(NULL),
+    _size(0)
+{std::clog << "\033[1;30m" << "⚙️  Array:: Default Constructor" << "\033[0m" << std::endl;}
 template <typename T>
 Array<T>::Array(unsigned int size):
-    array(new T[size]),
-    size(size)
-{}
+    _array(new T[size]),
+    _size(size)
+{std::clog << "\033[1;30m" << "⚙️  Array:: Size " << size << " Constructor" << "\033[0m" << std::endl;}
 template <typename T>
 Array<T>::Array(Array const& copy):
-    array(new T[copy.size]),
-    size(copy.size)
+    _array(new T[copy._size]),
+    _size(copy._size)
 {
-    for (unsigned int i = 0; i < copy.size; i++)
-        array[i] = copy.array[i];
+    for (unsigned int i = 0; i < copy._size; i++)
+        _array[i] = copy._array[i];
+    std::clog << "\033[1;30m" << "⚙️  Array:: Copy Constructor" << "\033[0m" << std::endl;
 }
 template <typename T>
 Array<T>& Array<T>::operator=(Array<T> const& copy){
     if (this != &copy){
-        if (array != NULL)
-            delete[] array;
-        array = new T[copy.size];
-        size = copy.size;
-        for (unsigned int i = 0; i < copy.size; i++)
-            array[i] = copy.array[i];
+        if (_array != NULL)
+            delete[] _array;
+        _array = new T[copy._size];
+        _size = copy._size;
+        for (unsigned int i = 0; i < copy._size; i++)
+            _array[i] = copy._array[i];
     }
+    std::clog << "\033[1;30m" << "🟰  Array:: Copy Assignment Operator" << "\033[0m" << std::endl;
     return (*this);
 }
 template <typename T>
 Array<T>::~Array(){
-    if (array != NULL)
-        delete[] array;
+    if (_array != NULL)
+        delete[] _array;
+    std::clog << "\033[1;30m" << "💣 Array:: Destructor" << "\033[0m" << std::endl;
 }
 
 /*exceptions*/
 template <typename T>
 T& Array<T>::operator[](unsigned int index){
-    if (index >= size)
+    if (index >= _size)
         throw std::out_of_range("index out of Array's range!");
-    return (array[index]);
+    return (_array[index]);
 }
 template <typename T>
 const T& Array<T>::operator[](unsigned int index) const{
-    if (index >= size)
+    if (index >= _size)
         throw std::out_of_range("index out of Array's range!");
-    return (array[index]);
+    return (_array[index]);
 }
 
 /*memberFunctions*/
 template <typename T>
 unsigned int Array<T>::size() const{
-    return (size);
+    return (_size);
 }
 
 #endif
