@@ -6,18 +6,20 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:26:19 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/26 16:08:09 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/27 07:07:27 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+# include <iostream>
+# include <stdexcept>
 template <typename T>
 class Array
 {
 private:
-	T*				elements;
+	T*				array;
 	unsigned int	size;
 public:
 	Array();
@@ -31,13 +33,6 @@ public:
 	unsigned int size() const;
 };
 
-Array::Array(/* args */)
-{
-}
-
-Array::~Array()
-{
-}
-
+# include "Array.tpp"
 
 #endif

@@ -6,86 +6,61 @@
 /*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:39:16 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/26 12:15:41 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/03/27 08:06:55 by kglebows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "iter.hpp"
+#include "Array.hpp"
 
 #include <cstdlib>
 #include <ctime>
 #include <sstream>
 
-struct diceRoll
-{
-	int			amount;
-	std::string	dice;
-	int			diceValue;
-};
 
-void rollDice(int diceValue){
+int rollDice(int diceValue){
 	int roll;
 
+	if (diceValue <= 1)
+		return(1);
 	roll = rand() % diceValue + 1;
-	std::cout << roll << " ";
-}
-void upgradeDice(int &diceValue){
-	diceValue *= 2;
+	return (roll);
 }
 
-void upgradeDiceName(std::string &diceName){
-	std::string preNumber = diceName.substr(1,diceName.size());
-	int Number = std::atoi(preNumber.c_str()) * 2;
+std::string rollString(int lenght){
 	std::ostringstream oss;
-	oss << "d" << Number;
-	diceName = oss.str();
-}
-
-void printDice(std::string DiceName){
-	std::cout << DiceName << " ";
-}
-
-void rollemAll(diceRoll DiceRoll){
-	for (int i = 0; i < DiceRoll.amount; i++){
-		std::cout << i + 1 << ":";
-		printDice(DiceRoll.dice);
-		std::cout << "= ";
-		rollDice(DiceRoll.diceValue);
+	if (lenght <= 0)
+		return(NULL);
+	for (int i = 0; i < lenght; i++){
+		oss << static_cast<char>(31 + rollDice(95));
 	}
-		std::cout << std::endl;
+	return(oss.str());
 }
 
 int main(){
 	srand(time(0));
-	int DiceValues[] = {4, 6, 8, 10, 12, 20};
-	std::string DiceNames[] = {"d4", "d6", "d8", "d10", "d12", "d20"};
-	diceRoll	DiceRolls[] = {{4, "d4", 4}, {2, "d6", 6}, {1, "d8", 8}, {10, "d10", 10}, {3, "d12", 12}, {5, "d20", 20}};
-
-	std::cout << std::endl;
-	std::cout << "*Dice!*" << std::endl;
-	iter(DiceNames, 6, printDice);
-	std::cout << std::endl;
-	iter(DiceValues, 6, rollDice);
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << "*Double Dice?*" << std::endl;
-	iter(DiceNames, 6, upgradeDiceName);
-	iter(DiceValues, 6, upgradeDice);
-	iter(DiceNames, 6, printDice);
-	std::cout << std::endl;
-	iter(DiceValues, 6, rollDice);
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << "*Quardra Dice?!*" << std::endl;
-	iter(DiceValues, 6, upgradeDice);
-	iter(DiceNames, 6, upgradeDiceName);
-	iter(DiceNames, 6, printDice);
-	std::cout << std::endl;
-	iter(DiceValues, 6, rollDice);
-	std::cout << std::endl;
-	std::cout << std::endl;
-	std::cout << "*SO MANY DICE!!!*" << std::endl;
-	iter(DiceRolls, 6, rollemAll);
 	
+	Array<int> emptyInt();
+	Array<std::string> emptyString();
+	
+	Array<int> randomDice(6);
+	Array<std::string> randomString(4);
+
+	for (unsigned int i = 0; i < randomDice.size(); i++)
+		randomDice[i] = i * 100 + rollDice(99);
+	
+	for (unsigned int i = 0; i < randomString.size(); i++)
+		randomString[i] = rollString(rollDice(20));
+
+	std::cout << std::endl << "Rolls:" << std::endl;
+	for (unsigned int i = 0; i < randomDice.size(); i++)
+		std::cout << i + 1 << ":" << randomDice[i] << ":" << std::endl;
+
+	std::cout << std::endl << "Strings:" << std::endl;
+	for (unsigned int i = 0; i < randomString.size(); i++)
+		std::cout << i + 1 << ":" << randomString[i] << ":" << std::endl;
+
+	std::cout << std::endl << "EmptyInt:" << std::endl;
+	std::cout << "0:" << emptyInt[i] << ":" << std::endl;
+
 	return (0);
 }
