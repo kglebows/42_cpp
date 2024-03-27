@@ -71,6 +71,17 @@ int main(){
 	for (unsigned int i = 0; i < copyString.size(); i++)
 		std::cout << i + 1 << ":" << copyString[i] << ":" << std::endl;	
 
+	std::cout << std::endl << "Bad Access x2:" << std::endl;
+	for (unsigned int i = 0; i < copyString.size() + 2; i++){
+		try{
+			std::cout << i + 1 << ":" << copyString[i] << ":" << std::endl;	
+		}
+		catch(const std::exception& e){
+			std::cerr << e.what() << '\n';
+		}
+	}
+	
+
 	std::cout << std::endl;
 	return (0);
 }
