@@ -14,28 +14,28 @@
 
 /*constructor/destructor*/
 Fixed::Fixed(){
-	std::clog << "Fixed:: Default constructor called" << std::endl;
+	std::clog << "\033[1;30m ⚙️ " << "Fixed:: Default constructor called" << "\033[0m" << std::endl;
 	value = 0;
 }
 Fixed::Fixed(const int value){
-	std::clog << "Fixed:: int Assign constructor called" << std::endl;
+	std::clog << "\033[1;30m ⚙️ " << "Fixed:: int Assign constructor called" << "\033[0m" << std::endl;
 	this->value = value << fractionalBits;
 }
 Fixed::Fixed(const float value){
-	std::clog << "Fixed:: float Assign constructor called" << std::endl;
-	this->value = static_cast<int>(roundf(value * (1 << fractionalBits)));
+	std::clog << "\033[1;30m ⚙️ " << "Fixed:: float Assign constructor called" << "\033[0m" << std::endl;
+	this->value = static_cast<int>(value * (1 << fractionalBits));
 }
 Fixed::Fixed(const Fixed &copy){
-	std::clog << "Fixed:: Copy constructor called" << std::endl;
+	std::clog << "\033[1;30m ⚙️ " << "Fixed:: Copy constructor called" << "\033[0m" << std::endl;
 	*this = copy;
 }
 Fixed::~Fixed(){
-	std::clog << "Fixed:: destructor called" << std::endl;
+	std::clog << "\033[1;30m 💣 " << "Fixed:: destructor called" << "\033[0m" << std::endl;
 }
 
 /*operators*/
 Fixed &Fixed::operator=(const Fixed &equalTo){
-	std::clog << "Fixed:: Copy assinment operator called" << std::endl;
+	std::clog << "\033[1;30m 🟰 " << "Fixed:: Copy assinment operator called" << "\033[0m" << std::endl;
 	if (this != &equalTo)
 		this->value = equalTo.getRawBits();
 	return (*this);
