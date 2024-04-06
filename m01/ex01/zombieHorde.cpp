@@ -17,7 +17,7 @@ Zombie* zombieHorde( int N, std::string name ){
 		return (NULL);
 	Zombie *ptr = new Zombie[N];
 	for (int i = 0; i < N; i++) {
-		ptr[i].setName(name + "_" + std::to_string(i + 1));
+		ptr[i].setName(name + "_horde");
 	}
 	return (ptr);
 }

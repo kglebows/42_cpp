@@ -33,9 +33,10 @@ int main(int argc, char** argv)
 	std::string s1(argv[2]);
 	std::string s2(argv[3]);
 	std::string line;
-	std::ifstream ifile(filename);
+	std::ifstream ifile(filename.c_str());
 	if (ifile.is_open()){
-		std::ofstream ofile(filename + ".replace");
+		std::string ofilename(filename + ".replace");
+		std::ofstream ofile(ofilename.c_str());
 		while (std::getline(ifile, line)){
 			size_t find = line.find(s1, 0);
 			while (find != std::string::npos){
