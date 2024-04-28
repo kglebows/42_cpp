@@ -42,26 +42,45 @@ void ScalarConverter::convert(std::string const& original){
 		input = original;
 	std::istringstream before(input);
 	double		toPrint;
+	char		c;
+	bool		flag = false;
+
 	before >> toPrint;
-	if (original.length() == 1 && std::isprint(original[0]) && !std::isdigit(original[0]))
+
+	if (original.length() == 1 && std::isprint(original[0]) && !std::isdigit(original[0])){
 		std::cout	<< "char: '" << original[0] << "'" << std::endl;
-	else if (original.length() == 3 && std::isprint(original[1]) && original[0] == '\'' && original[2] == '\'')
+		c = original[0];
+		flag = true;
+	} else if (original.length() == 3 && std::isprint(original[1]) && ((original[0] == '\'' && original[2] == '\'') || (original[0] == '\"' && original[2] == '\"'))) {
 		std::cout	<< "char: '" << original[1] << "'" << std::endl;
-	else if (original.length() == 1 && !std::isprint(original[0]))
+		c = original[1];
+		flag = true;
+	} else if (!before.eof()){
+		std::cout << "char: impossible"<< std::endl;
+		std::cout << "int: impossible"<< std::endl;
+		std::cout << "float: impossible"<< std::endl;
+		std::cout << "double: impossible"<< std::endl;
+		return ;
+	} else if (original.length() == 1 && !std::isprint(original[0])) {
 		std::cout	<< "char: Non displayable" << std::endl;
-	else if (before.fail())
+	} else if (before.fail()) {
 		std::cout	<< "char: impossible" << std::endl;
-	else if (toPrint == 127 || (toPrint >= 0 && toPrint <= 31))
+	} else if (toPrint == 127 || (toPrint >= 0 && toPrint <= 31)) {
 		std::cout	<< "char: Non displayable" << std::endl;
-	else if (toPrint >= 32 && toPrint <= 126)
+	} else if (toPrint >= 32 && toPrint <= 126) {
 		std::cout	<< "char: '" << static_cast<char>(toPrint) << "'" << std::endl;
-	else
+	} else {
 		std::cout	<< "char: impossible" << std::endl;
-	
-	if (toPrint >= INT_MIN && toPrint <= INT_MAX && !before.fail())
+	}
+
+
+	if (toPrint >= INT_MIN && toPrint <= INT_MAX && !before.fail()){
 		std::cout	<< "int: " << static_cast<int>(toPrint) << std::endl;
-	else
+	} else if (flag) {
+		std::cout	<< "int: " << static_cast<int>(c) << std::endl;
+	} else {
 		std::cout	<< "int: impossible" << std::endl;
+	}
 
 	if (original == "-inf" || original == "-inff"){
 		std::cout	<< "float: -inff" << std::endl;
@@ -74,9 +93,12 @@ void ScalarConverter::convert(std::string const& original){
 	else if (original == "nan" || original == "nanf"){
 		std::cout	<< "float: nanf" << std::endl;
 		std::cout	<< "double: nan" << std::endl;
+	} else if (flag) {
+		std::cout	<< "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl;
+		std::cout	<< "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
 	} else if (before.fail()) {
-		std::cout << "float: impossible"<< std::endl;
-		std::cout << "double: impossible"<< std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
 	} else {
 		std::cout	<< "float: " << std::fixed << std::setprecision(1) << static_cast<float>(toPrint) << "f" << std::endl;
 		std::cout	<< "double: " << std::fixed << std::setprecision(1) << static_cast<double>(toPrint) << std::endl;
