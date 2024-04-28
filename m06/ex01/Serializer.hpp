@@ -32,8 +32,8 @@ private:
 	Serializer& operator=(Serializer const& copy);
 
 public:
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t raw);
+	static size_t serialize(Data* ptr);
+	static Data* deserialize(size_t raw);
 	
 };
 
