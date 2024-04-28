@@ -29,7 +29,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 /*memberFunctions*/
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const{
 	(void)executor;
-	std::ofstream tree(target + "_shrubbery");
+	std::string fileName = target + "_shrubbery";
+	std::ofstream tree(fileName.c_str());
 	tree << "                ,@@@@@@@,                      ,@@@@@@@,                ,@@@@@@@," << std::endl;
 	tree << "       ,,,.   ,@@@@@@/@@,  .oo8888o.  ,,,.   ,@@@@@@/@@,  .oo8888o. ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
 	tree << "    ,&^%&%&&%,@@@@@/@@@@@@,8888\\88/8o,&%^&%&&%,@@@@@/@@@@@@,8888\\88/8o,&%^&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
