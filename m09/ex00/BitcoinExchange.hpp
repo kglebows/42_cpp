@@ -27,8 +27,8 @@ private:
     void processData();
     std::string parseInput(std::string & line);
     std::string parseDate(std::string & date);
-    std::string parseNumber(std::string & Number);
-    std::string calculateBitcoin(std::string & line);
+    double parseNumber(std::string & Number);
+    std::string calculateBitcoin(std::string & line, int n);
 
     bool isLeapYear(int year);
     bool isValidDate(int year, int month, int day);
@@ -55,6 +55,7 @@ void BitcoinExchange::processInput(){
 std::string BitcoinExchange::parseInput(std::string & line){
     std::string date;
     std::string number;
+    double      n = -1;
     std::ostringstream result;
     size_t separator = line.find(' ');
     if (separator != std::string::npos 
@@ -64,10 +65,10 @@ std::string BitcoinExchange::parseInput(std::string & line){
         number = line.substr(separator + 3);
         if ((date = parseDate(date)) != "")
             result << ORANGE << date;
-        else if ((number = parseNumber(number)) != "")
-            result << ORANGE << number;
+        else if ((n = parseNumber(number)) == -1)
+            result << ORANGE << "Wrong number input";
         else
-            result << GREEN << calculateBitcoin(line);
+            result << GREEN << calculateBitcoin(line, n);
     } else {
         result << RED << "Error: Bad input";
     }
@@ -88,14 +89,12 @@ bool BitcoinExchange::isLeapYear(int year) {
 }
 
 bool BitcoinExchange::isValidDate(int day, int month, int year) {
-    if (year < 1 || month < 1 || month > 12 || day < 1) {
+    if (year < 1 || month < 1 || month > 12 || day < 1)
         return false;
-    }
     static const int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     int days = daysInMonth[month - 1];
-    if (month == 2 && isLeapYear(year)) {
+    if (month == 2 && isLeapYear(year))
         days = 29;
-    }
     return (day <= days);
 }
 
@@ -114,6 +113,16 @@ std::string BitcoinExchange::parseDate(std::string &date){
         return ("Error: Bad date format");
     if (!isValidDate(day, month, year))
         return ("Error: Wrong date input");
+    return ("");
+}
+
+double BitcoinExchange::parseNumber(std::string & Number){
+    std::istringstream iss(Number);
+    double n = -1;
+    iss >> n;
+    if (iss.fail() || !iss.eof() || n < 0)
+        return (-1);
+    return (n);
 }
 
 BitcoinExchange::BitcoinExchange(char *input){
