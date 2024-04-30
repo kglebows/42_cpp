@@ -180,3 +180,14 @@ BitcoinExchange::~BitcoinExchange(){
 }
 
 BitcoinExchange::BitcoinExchange(){}
+
+BitcoinExchange::BitcoinExchange(BitcoinExchange const& copy){
+    (void)copy;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const& copy){
+    if (this != &copy){
+        data = copy.data;
+    }
+    return (*this);
+}

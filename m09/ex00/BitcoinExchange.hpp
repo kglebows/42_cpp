@@ -33,6 +33,8 @@ private:
     void closeFiles();
 
     BitcoinExchange();
+    BitcoinExchange(BitcoinExchange const& copy);
+    BitcoinExchange& operator=(BitcoinExchange const& copy);
 public:
     void processInput();
 
