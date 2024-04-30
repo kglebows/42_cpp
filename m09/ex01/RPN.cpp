@@ -1,9 +1,9 @@
 #include "RPN.hpp"
 
 RPN::RPN(const char *str): equation(str), position(0){
-	int right;
-	int left;
-	int result;
+	double right;
+	double left;
+	double result;
 
 	while (equation[position] != '\0') {
 		if (isdigit(equation[position])){

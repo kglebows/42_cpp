@@ -16,7 +16,7 @@ class RPN
 private:
 	std::string equation;
 	int	position;
-	std::stack<int> stack;
+	std::stack<double> stack;
 
 	RPN();
 	RPN(RPN const& copy);
