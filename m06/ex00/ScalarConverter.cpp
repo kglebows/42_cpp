@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kglebows <kglebows@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:17:42 by kglebows          #+#    #+#             */
-/*   Updated: 2024/03/23 12:10:00 by kglebows         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:12:04 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void ScalarConverter::convert(std::string const& original){
 		std::cout	<< "char: '" << original[1] << "'" << std::endl;
 		c = original[1];
 		flag = true;
-	} else if (!before.eof()){
+	} else if (!before.eof() && !(original == "-inf" || original == "-inff" || original == "+inf" || original == "+inff" || original == "nan" || original == "nanf" || original == "inf")){
 		std::cout << "char: impossible"<< std::endl;
 		std::cout << "int: impossible"<< std::endl;
 		std::cout << "float: impossible"<< std::endl;
