@@ -15,6 +15,7 @@ private:
 	std::deque<int> mainChainDeque;
 	std::vector<int> subChainVector;
 	std::deque<int> subChainDeque;
+	std::pair<int, int> jacob;
 public:
 	PmergeMe();
 	~PmergeMe();

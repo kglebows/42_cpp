@@ -84,4 +84,29 @@ void PmergeMe::vectorMe(int argc, const char* argv[]){
 	printVectorChain(mainChainVector);
 	std::cout << "Sub chain: ";
 	printVectorChain(subChainVector);
+
+	mainChainVector.insert(mainChainVector.begin(), subChainVector[0]);
+	jacob.first = 1;
+	jacob.second = 3;
+	int temp;
+	std::vector<int>::iterator where;
+	for (int i = jacob.second; i > jacob.first; i--)
+	{
+		if ((i - 1 < (int)subChainVector.size())){
+			where = std::lower_bound(mainChainVector.begin(), mainChainVector.end(), subChainVector[i - 1]);
+			mainChainVector.insert(where, subChainVector[i - 1]);
+		}
+		if (i == jacob.first + 1){
+			temp = jacob.first;
+			jacob.first = jacob.second;
+			jacob.second = jacob.first + 2 * temp;
+			i = jacob.second + 1;
+			if (jacob.first >= (int)subChainVector.size())
+				break;
+		}
+	}
+	std::cout << "Result chain: ";
+	printVectorChain(mainChainVector);
+	
+
 }
